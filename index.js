@@ -1,6 +1,7 @@
 import express, { urlencoded } from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import passport from 'passport'
 
 import routes from './src/routers/index.js'
 
@@ -10,6 +11,8 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+// app.use(passport.initialize())
 
 app.use('/api/v1', routes)
 

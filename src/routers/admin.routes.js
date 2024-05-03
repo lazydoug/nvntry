@@ -20,6 +20,7 @@ router.post(
   body('email')
     .exists()
     .withMessage('Email is required')
+    .trim()
     .notEmpty()
     .withMessage('Email cannot be empty')
     .isEmail()
@@ -28,6 +29,7 @@ router.post(
   body('password')
     .exists()
     .withMessage('Password is required')
+    .trim()
     .notEmpty()
     .withMessage('Password cannot be empty')
     .isLength({ min: 8 })
@@ -42,6 +44,7 @@ router.post(
   body('email')
     .exists()
     .withMessage('Email is required')
+    .trim()
     .notEmpty()
     .withMessage('Email cannot be empty')
     .isEmail()
@@ -50,6 +53,7 @@ router.post(
   body('password')
     .exists()
     .withMessage('Password is required')
+    .trim()
     .notEmpty()
     .withMessage('Password cannot be empty')
     .isLength({ min: 8 })
@@ -66,12 +70,14 @@ router.post(
   body('name')
     .exists()
     .withMessage('The name of the patron is required')
+    .trim()
     .notEmpty()
     .withMessage('Patron name cannot be empty'),
 
   body('product')
     .exists()
     .withMessage('Product is requied')
+    .trim()
     .notEmpty()
     .withMessage('Product name cannot be empty'),
 

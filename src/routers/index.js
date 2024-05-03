@@ -8,6 +8,6 @@ const router = Router()
 
 router.use('/admin', adminRoutes)
 router.use('/patron', patronRoutes)
-router.use('/product', productRoutes)
+router.use('/products', productRoutes)
 
 export default router
