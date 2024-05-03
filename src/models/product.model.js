@@ -2,9 +2,13 @@ import mongoose from 'mongoose'
 
 const productSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    quantity: { type: Number, required: true, default: 0 },
-    unit_price: { type: Number, required: true },
+    name: { type: String, required: [true, 'Product name is required'] },
+    quantity: {
+      type: Number,
+      required: [true, 'Quantity is required'],
+      min: [0, 'Quantity cannot go below zero'],
+    },
+    unit_price: { type: Number, required: [true, 'Unit price is required'] },
   },
   { timestamps: true }
 )

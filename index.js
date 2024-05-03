@@ -2,6 +2,8 @@ import express, { urlencoded } from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
+import routes from './src/routers/index.js'
+
 dotenv.config()
 
 const app = express()
@@ -9,7 +11,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use()
+app.use('/api/v1', routes)
 
 mongoose
   .connect(process.env.DATABASE_CONNECTION_STRING)
