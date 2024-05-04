@@ -7,9 +7,16 @@ import {
   login,
   updatePassword,
   updateInventory,
+  getAllPatrons,
 } from '../controllers/patron.controller.js'
 
 const router = Router()
+
+router.get(
+  '/',
+  passport.authenticate('admin-strategy', { session: false }),
+  getAllPatrons
+)
 
 router.patch(
   '/update-password',

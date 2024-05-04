@@ -6,6 +6,7 @@ import validationHandler from '../handlers/validation.handler.js'
 import {
   createProduct,
   updateInventory,
+  getAllProducts,
 } from '../controllers/product.controller.js'
 import '../authentication/strategy.authentication.js'
 
@@ -13,8 +14,8 @@ const router = Router()
 
 router.get(
   '/',
-  passport.authenticate('admin-strategy', { session: false })
-  //TODO get all products route
+  passport.authenticate('admin-strategy', { session: false }),
+  getAllProducts
 )
 
 router.post(

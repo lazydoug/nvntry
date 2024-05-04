@@ -85,4 +85,19 @@ const updateInventory = async (req, res) => {
   }
 }
 
-export { login, updatePassword, updateInventory }
+const getAllPatrons = async (req, res) => {
+  try {
+    const patrons = await Patron.find({}, { name: 1, product: 1, quantity: 1 })
+
+    if (!patrons)
+      return res.status(404).send({ message: 'No patron was found' })
+
+    res.status(200).send(patrons)
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: 'Oops! Something went wrong.', error: error })
+  }
+}
+
+export { login, updatePassword, updateInventory, getAllPatrons }
