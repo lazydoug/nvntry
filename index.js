@@ -12,7 +12,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// app.use(passport.initialize())
+app.use(passport.initialize())
 
 app.use('/api/v1', routes)
 
