@@ -1,17 +1,9 @@
-/**
- * sign-in
- * create customer
- * create products
- * update inventory level
- */
-
 import Router from 'express'
 import { body } from 'express-validator'
 import passport from 'passport'
 
 import validationHandler from '../handlers/validation.handler.js'
-import adminController from '../controllers/admin.controllers.js'
-import '../authentication/strategy.authentication.js'
+import adminController from '../controllers/admin.controller.js'
 
 const router = Router()
 
@@ -65,7 +57,7 @@ router.post(
 
 router.post(
   '/create-patron',
-  passport.authenticate('jwt', { session: false }),
+  passport.authenticate('admin-strategy', { session: false }),
 
   body('name')
     .exists()

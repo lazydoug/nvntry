@@ -24,7 +24,7 @@ const signup = async (req, res) => {
 
     await Admin.create({ email, password: hashedPassword })
 
-    res.status(201).send({ message: 'Registration successful' })
+    res.status(200).send({ message: 'Registration successful' })
   } catch (error) {
     res
       .status(500)
@@ -81,7 +81,7 @@ const createPatron = async (req, res) => {
     if (patron)
       return res.status(409).send({ message: 'Patron already exists' })
 
-    const password = await hash('A1B1cthree', 13)
+    const password = await hash('A1B2cthree', 13)
 
     await Patron.create({
       name,
@@ -90,7 +90,7 @@ const createPatron = async (req, res) => {
       password,
     })
 
-    res.status(201).send({ message: 'Patron created successfully' })
+    res.status(200).send({ message: 'Patron created successfully' })
   } catch (error) {
     res
       .status(500)

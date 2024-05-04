@@ -1,5 +1,5 @@
 import Router from 'express'
-import { body } from 'express-validator'
+import { body, param } from 'express-validator'
 import passport from 'passport'
 
 import validationHandler from '../handlers/validation.handler.js'
@@ -7,12 +7,19 @@ import {
   createProduct,
   updateInventory,
 } from '../controllers/product.controller.js'
+import '../authentication/strategy.authentication.js'
 
 const router = Router()
 
+router.get(
+  '/',
+  passport.authenticate('admin-strategy', { session: false })
+  //TODO get all products route
+)
+
 router.post(
   '/new',
-  passport.authenticate('jwt', { session: false }),
+  passport.authenticate('admin-strategy', { session: false }),
 
   body('name')
     .exists()
@@ -44,7 +51,15 @@ router.post(
 )
 
 router.patch(
-  '/:id/inventory',
+  '/:id',
+  passport.authenticate('admin-strategy', { session: false }),
+
+  param('id')
+    .trim()
+    .isHexadecimal()
+    .withMessage('Invalid product')
+    .isLength({ min: 24, max: 24 })
+    .withMessage('Invalid product'),
 
   body('quantity')
     .exists()
