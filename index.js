@@ -18,9 +18,9 @@ app.use('/api/v1', routes)
 
 mongoose
   .connect(process.env.DATABASE_CONNECTION_STRING)
-  .then(
+  .then(() => {
     app.listen(process.env.PORT, () =>
       console.log(`DB connected. Server listening on port ${process.env.PORT}`)
     )
-  )
+  })
   .catch(err => console.error('Error connecting to DB', err))
